@@ -31,6 +31,8 @@ module.exports = {
     "no-mixed-spaces-and-tabs": [0],
     "no-trailing-spaces": 0,
     //解决“Expected indentation of 2 spaces but found 4”
-    "indent": ["off", 2]
+    "indent": ["off", 2],
+    //解决：“is defined but never used eslint”
+    "no-unused-vars":"off"
   }
 }
