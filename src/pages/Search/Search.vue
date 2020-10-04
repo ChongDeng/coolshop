@@ -1,11 +1,8 @@
 <template>
   <section class="search">
     
-      <header class="header">
-          <a class="header_title">
-            <span class="header_title_text">搜索</span>
-          </a>
-      </header>
+      <HeaderTop title="搜索">          
+      </HeaderTop>
 
       <form class="search_form" @submit.prevent="search">
         <input type="search" placeholder="请输入商家名称" class="search_input" v-model="keyword">
@@ -17,7 +14,13 @@
 </template>
 
 <script>
-export default {}
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+
+export default {
+  components: {
+    HeaderTop
+  }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

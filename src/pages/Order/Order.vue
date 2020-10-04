@@ -1,10 +1,20 @@
 <template>
   <section class="order">
-          <header class="header">
-            <a class="header_title">
-              <span class="header_title_text">订单列表</span>
-            </a>
+          <HeaderTop title="订单列表">              
+          </HeaderTop>
+          
+          <header class="msite_header">
+                  <span class="header_search">
+                    <i class="iconfont icon-sousuo"></i>
+                  </span>
+                  <span class="header_title">
+                    <span class="header_title_text ellipsis">华南理工大学穗石村(510006)</span>
+                  </span>
+                  <span class="header_login">
+                    <span class="header_login_text">登录|注册</span>
+                  </span>
           </header>
+          
 
           <section class="order_no_login">
             <img src="./images/person.png">
@@ -15,7 +25,13 @@
 </template>
 
 <script>
-export default {}
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+
+export default {
+  components: {
+    HeaderTop
+  }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
@@ -23,7 +39,7 @@ export default {}
 
   .order  //订单
           width 100%
-          
+
           .header
             background-color #02a774
             position fixed
@@ -63,7 +79,7 @@ export default {}
               transform translateY(-50%)
               .header_login_text
                 color #fff
-                
+
           .order_no_login
             padding-top 140px
             width 60%

@@ -1,10 +1,7 @@
 <template>
   <section class="profile">
-          <header class="header">
-            <a class="header_title">
-              <span class="header_title_text">我的</span>
-            </a>
-          </header>
+          <HeaderTop title="我的">
+          </HeaderTop>
 
           <section class="profile-number">
             <a href="javascript:" class="profile-link">
@@ -100,7 +97,13 @@
 </template>
 
 <script>
-export default {}
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+
+export default {
+  components: {
+    HeaderTop
+  }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
@@ -157,7 +160,7 @@ export default {}
                 .icon-jiantou1
                   color #fff
                   font-size 5px
-          
+
           .profile_info_data
             bottom-border-1px(#e4e4e4)
             width 100%
@@ -197,7 +200,7 @@ export default {}
                 .info_data_top
                   span
                     color #6ac20b
-          
+
           .profile_my_order
             top-border-1px(#e4e4e4)
             margin-top 10px

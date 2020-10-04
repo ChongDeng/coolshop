@@ -11,7 +11,7 @@ module.exports = {
   extends: [
     // https://github.com/vuejs/eslint-plugin-vue#priority-a-essential-error-prevention
     // consider switching to `plugin:vue/strongly-recommended` or `plugin:vue/recommended` for stricter rules.
-    'plugin:vue/essential', 
+    'plugin:vue/essential',
     // https://github.com/standard/standard/blob/master/docs/RULES-en.md
     'standard'
   ],
@@ -30,5 +30,7 @@ module.exports = {
     //关闭禁止混用tab和空格
     "no-mixed-spaces-and-tabs": [0],
     "no-trailing-spaces": 0,
+    //解决“Expected indentation of 2 spaces but found 4”
+    "indent": ["off", 2]
   }
 }

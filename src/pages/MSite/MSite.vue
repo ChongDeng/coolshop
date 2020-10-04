@@ -2,17 +2,14 @@
   <section class="msite">
 
     <!--首页头部-->
-    <header class="msite_header">
-            <span class="header_search">
-              <i class="iconfont icon-sousuo"></i>
-            </span>
-            <span class="header_title">
-              <span class="header_title_text ellipsis">华南理工大学穗石村(510006)</span>
-            </span>
-            <span class="header_login">
-              <span class="header_login_text">登录|注册</span>
-            </span>
-    </header>
+    <HeaderTop title="华南理工大学穗石村(510006)">
+         <span class="header_search" slot="left">
+           <i class="iconfont icon-sousuo"></i>
+         </span>
+         <span class="header_login" slot="right">
+           <span class="header_login_text">登录|注册</span>
+         </span>
+    </HeaderTop>
 
     <!--首页导航-->
     <nav class="msite_nav">
@@ -316,7 +313,13 @@
 </template>
 
 <script>
-export default {}
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+
+export default {
+  components: {
+    HeaderTop
+  }
+}
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
