@@ -33,6 +33,8 @@ module.exports = {
     //解决“Expected indentation of 2 spaces but found 4”
     "indent": ["off", 2],
     //解决：“is defined but never used eslint”
-    "no-unused-vars":"off"
+    "no-unused-vars":"off",
+    //解决：'Newline required at end of file but not found eol-last'
+    "eol-last": 0
   }
 }
