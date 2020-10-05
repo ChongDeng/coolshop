@@ -35,6 +35,8 @@ module.exports = {
     //解决：“is defined but never used eslint”
     "no-unused-vars":"off",
     //解决：'Newline required at end of file but not found eol-last'
-    "eol-last": 0
+    "eol-last": 0,
+    //解决： Infix operators must be spaced 
+    "space-infix-ops": 0
   }
 }
