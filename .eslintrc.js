@@ -36,7 +36,8 @@ module.exports = {
     "no-unused-vars":"off",
     //解决：'Newline required at end of file but not found eol-last'
     "eol-last": 0,
-    //解决： Infix operators must be spaced 
-    "space-infix-ops": 0
+    //解决： Infix operators must be spaced
+    "space-infix-ops": 0,
+    "space-before-function-paren": 0
   }
 }
