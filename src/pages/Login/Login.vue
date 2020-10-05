@@ -1,6 +1,7 @@
 <template>
   <section class="loginContainer">
         <div class="loginInner">
+          
           <div class="login_header">
             <h2 class="login_logo">Super外卖</h2>
             <div class="login_header_title">
@@ -8,8 +9,10 @@
               <a href="javascript:;">密码登录</a>
             </div>
           </div>
+          
           <div class="login_content">
             <form>
+              
               <div class="on">
                 <section class="login_message">
                   <input type="tel" maxlength="11" placeholder="手机号">
@@ -23,6 +26,7 @@
                   <a href="javascript:;">《用户服务协议》</a>
                 </section>
               </div>
+              
               <div>
                 <section>
                   <section class="login_message">
@@ -45,6 +49,7 @@
             </form>
             <a href="javascript:;" class="about_us">关于我们</a>
           </div>
+          
           <a href="javascript:" class="go_back" @click="$router.back()">
             <i class="iconfont icon-jiantou2"></i>
           </a>
