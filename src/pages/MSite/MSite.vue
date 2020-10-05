@@ -51,9 +51,12 @@ import 'swiper/dist/css/swiper.min.css'
 import {mapState} from 'vuex'
 
 export default {
-  mounted () {     
+  mounted () {
      // 异步获取食品分类数据(后台==>state)
      this.$store.dispatch('getCategorys')
+     
+     // 异步获取商家列表数据(后台==>state)
+     this.$store.dispatch('getShops')
   },
 
   watch: {
