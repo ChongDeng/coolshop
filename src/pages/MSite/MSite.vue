@@ -2,7 +2,7 @@
   <section class="msite">
 
     <!--首页头部-->
-    <HeaderTop title="华南理工大学穗石村(510006)">
+    <HeaderTop :title="address.name || '正在定位中...'">
          <span class="header_search" slot="left">
            <i class="iconfont icon-sousuo"></i>
          </span>
@@ -140,6 +140,8 @@ import ShopList from '../../components/ShopList/ShopList.vue'
 import Swiper from 'swiper'
 import 'swiper/dist/css/swiper.min.css'
 
+import {mapState} from 'vuex'
+
 export default {
   mounted () {
      // 创建轮播的对象
@@ -151,6 +153,10 @@ export default {
           el: '.swiper-pagination'
         }
       })
+  },
+  
+  computed: {
+    ...mapState(['address'])
   },
 
   components: {
