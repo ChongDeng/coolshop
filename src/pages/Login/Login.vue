@@ -1,7 +1,7 @@
 <template>
   <section class="loginContainer">
         <div class="loginInner">
-          
+
           <div class="login_header">
             <h2 class="login_logo">Super外卖</h2>
             <div class="login_header_title">
@@ -9,14 +9,14 @@
               <a href="javascript:;" :class="{on: !loginWay}" @click="loginWay=false">密码登录</a>
             </div>
           </div>
-          
+
           <div class="login_content">
             <form>
-              
+
               <div :class="{on: loginWay}">
                 <section class="login_message">
-                  <input type="tel" maxlength="11" placeholder="手机号">
-                  <button disabled="disabled" class="get_verification">获取验证码</button>
+                  <input type="tel" maxlength="11" placeholder="手机号"  v-model="phone">
+                  <button disabled="disabled" class="get_verification" :class="{right_phone: isRightPhone}">获取验证码</button>
                 </section>
                 <section class="login_verification">
                   <input type="tel" maxlength="8" placeholder="验证码">
@@ -49,7 +49,7 @@
             </form>
             <a href="javascript:;" class="about_us">关于我们</a>
           </div>
-          
+
           <a href="javascript:" class="go_back" @click="$router.back()">
             <i class="iconfont icon-jiantou2"></i>
           </a>
@@ -61,9 +61,16 @@
   export default {
     data () {
           return {
-            loginWay: false // true: 短信, false: 密码           
+            loginWay: false, // true: 短信, false: 密码
+            phone: '' // 手机号
           }
-        }
+        },
+
+    computed: {
+              isRightPhone () {
+                return /^1\d{10}$/.test(this.phone)
+              }
+    }
   }
 </script>
 
