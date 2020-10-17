@@ -35,10 +35,10 @@
                     <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
                   </section>
                   <section class="login_verification">
-                    <input type="tel" maxlength="8" placeholder="密码">
-                    <div class="switch_button off">
-                      <div class="switch_circle"></div>
-                      <span class="switch_text">...</span>
+                    <input :type="willShowPwd ? 'text' : 'password'" maxlength="8" placeholder="密码" v-model="pwd">
+                    <div class="switch_button" :class="willShowPwd ? 'on' : 'off'" @click="willShowPwd=!willShowPwd">
+                                      <div class="switch_circle" :class="{right: willShowPwd}"></div>
+                                      <span class="switch_text">{{willShowPwd ? 'abc' : ''}}</span>
                     </div>
                   </section>
                   <section class="login_message">
@@ -64,8 +64,11 @@
     data () {
           return {
             loginWay: false, // true: 短信, false: 密码
-            phone: '' ,// 手机号
-            computeTime: 0 // 倒计时剩余的时间, 单位秒
+            phone: '', // 手机号
+            computeTime: 0, // 倒计时剩余的时间, 单位秒
+            willShowPwd: false, // 是否显示密码
+
+            pwd: '' // 密码
           }
         },
 
@@ -79,20 +82,20 @@
             // 发送短信验证码
             async sendCode () {
               // alert('---')
-              if(!this.computeTime){
+              if (!this.computeTime) {
                   // 显示最大的计时时间
                   this.computeTime = 30
                   // 启动循环计时器, 每隔1s减1
                   const intervalId = setInterval(() => {
                     this.computeTime--
-                    if(this.computeTime<=0) {
+                    if (this.computeTime<=0) {
                       this.computeTime = 0
                       // 停止倒计时
                       clearInterval(intervalId)
                     }
                   }, 1000)
 
-                  // 发ajax请求==> 发送验证码短信                 
+                  // 发ajax请求==> 发送验证码短信
               }
             }
     }
@@ -201,7 +204,7 @@
                   box-shadow 0 2px 4px 0 rgba(0,0,0,.1)
                   transition transform .3s
                   &.right
-                    transform translateX(30px)
+                    transform  translateX(30px)
             .login_hint
               margin-top 12px
               color #999
