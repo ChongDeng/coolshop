@@ -21,7 +21,7 @@
                   </button>
                 </section>
                 <section class="login_verification">
-                  <input type="tel" maxlength="8" placeholder="验证码">
+                  <input type="tel" maxlength="8" placeholder="验证码" v-model="code">
                 </section>
                 <section class="login_hint">
                   温馨提示：未注册Super外卖帐号的手机号，登录时将自动注册，且代表已同意
@@ -32,7 +32,7 @@
               <div :class="{on: !loginWay}">
                 <section>
                   <section class="login_message">
-                    <input type="tel" maxlength="11" placeholder="手机/邮箱/用户名">
+                    <input type="tel" maxlength="11" placeholder="用户名" v-model="name">
                   </section>
                   <section class="login_verification">
                     <input :type="willShowPwd ? 'text' : 'password'" maxlength="8" placeholder="密码" v-model="pwd">
@@ -42,12 +42,12 @@
                     </div>
                   </section>
                   <section class="login_message">
-                    <input type="text" maxlength="11" placeholder="验证码">
+                    <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
                     <img class="get_verification" src="./images/captcha.svg" alt="captcha">
                   </section>
                 </section>
               </div>
-              <button class="login_submit">登录</button>
+              <button class="login_submit" @click.prevent="login">登录</button>
             </form>
             <a href="javascript:;" class="about_us">关于我们</a>
           </div>
@@ -56,19 +56,33 @@
             <i class="iconfont icon-jiantou2"></i>
           </a>
         </div>
+
+        <!-- 提示组件,closeTip事件在其中被分发出来 -->
+        <AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip" />
+
       </section>
 </template>
 
 <script>
+  import AlertTip from '../../components/AlertTip/AlertTip.vue'
+
   export default {
     data () {
           return {
             loginWay: false, // true: 短信, false: 密码
+
             phone: '', // 手机号
+            code: '', // 短信验证码
+
             computeTime: 0, // 倒计时剩余的时间, 单位秒
             willShowPwd: false, // 是否显示密码
 
-            pwd: '' // 密码
+            name: '', // 用户名
+            pwd: '', // 密码
+            captcha: '', // 图形验证码
+
+            alertText: '', // 提示文本
+            alertShow: false // 是否显示提示框
           }
         },
 
@@ -97,7 +111,60 @@
 
                   // 发ajax请求==> 发送验证码短信
               }
+            },
+
+            // 请求登陆
+            async login () {
+                    // 进行前台表单验证
+                    const {phone, code, name, pwd, captcha, loginWay} = this
+                    let result
+
+                    if (loginWay) { // 短信登陆
+                      if (!this.isRightPhone) {
+                        this.showAlert('必须输入一个正确的手机号')
+                      } else if (!/^\d{6}$/.test(code)) {
+                        this.showAlert('必须输入6位数字')
+                      }
+                      // 发送登陆请求
+                      //result = await reqSmsLogin(phone, code)
+                    } else { // 密码登陆
+                      if (!name.trim()) {
+                        this.showAlert('必须输入用户名')
+                      } else if (!pwd.trim()) {
+                        this.showAlert('必须输入密码')
+                      } else if (captcha.length!==4) {
+                        this.showAlert('必须输入4位的验证码')
+                      }
+                      // 发送登陆请求
+                      //result = await reqPwdLogin({name, pwd, captcha})
+                    }
+                    // 根据结果做不同响应
+                    // if(result.code===0) {
+                    //   const user = result.data
+                    //   // 保存到state中去
+                    //   this.$store.dispatch('saveUser', user)
+                    //   // 跳转到个人中心
+                    //   this.$router.replace('/profile')
+                    // } else {// 登陆失败
+                    //   MessageBox.alert(result.msg)
+                    // }
+            },
+
+
+            // 显示提示框
+            showAlert (alertText) {
+                    this.alertShow = true
+                    this.alertText = alertText
+            },
+            // 关闭提示框
+            closeTip () {
+                    this.alertShow = false
+                    this.alertText = ''
             }
+    },
+
+    components: {
+          AlertTip
     }
   }
 </script>

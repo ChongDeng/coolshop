@@ -38,6 +38,8 @@ module.exports = {
     "eol-last": 0,
     //解决： Infix operators must be spaced
     "space-infix-ops": 0,
-    "space-before-function-paren": 0
+    "space-before-function-paren": 0,
+    //解决： Expected space or tab after '//' in comment
+    "spaced-comment": 0
   }
 }
